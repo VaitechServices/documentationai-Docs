@@ -1,5 +1,5 @@
 {
-  "name": "Vaitech Services",
+  "name": "WireCare",
   "colors": {
     "light": {
       "brand": "#1F2937"
@@ -120,5 +120,17 @@
         ]
       }
     ]
+  },
+  "logo-light": "https://blob-cdn.documentation.ai/org-c0de5504-28bd-45b7-928f-e35cbb50c729/doc-056fd1e2-786e-4f8d-897c-a0c532670875/1772093122718-z4s27ob3feh-WireCare-logo-no-bg.png?q=85&fm=auto&auto=compress%2Cformat",
+  "favicon": "https://blob-cdn.documentation.ai/org-c0de5504-28bd-45b7-928f-e35cbb50c729/doc-056fd1e2-786e-4f8d-897c-a0c532670875/1772093122718-z4s27ob3feh-WireCare-logo-no-bg.png?q=85&fm=auto&auto=compress%2Cformat",
+  "initialRoute": "introduction",
+  "seo": {
+    "robots:index": false,
+    "robots:follow": false,
+    "sitemap:enabled": false,
+    "llms-txt:enabled": false
+  },
+  "ai": {
+    "ai-assistant:enabled": true
   }
 }
