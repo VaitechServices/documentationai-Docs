@@ -35,6 +35,28 @@
             "icon": "layers",
             "pages": [
               {
+                "group": "Animals Page",
+                "pages": [
+                  {
+                    "title": "Animals",
+                    "path": "animals",
+                    "icon": "lucide-paw-print"
+                  }
+                ],
+                "icon": "lucide-paw-print"
+              },
+              {
+                "group": "Supplementary Concepts",
+                "pages": [
+                  {
+                    "title": "Future Intakes",
+                    "path": "future-intakes",
+                    "icon": "lucide-paw-print"
+                  }
+                ],
+                "icon": "transgender-icon"
+              },
+              {
                 "title": "Features",
                 "path": "features",
                 "icon": "file-text"
