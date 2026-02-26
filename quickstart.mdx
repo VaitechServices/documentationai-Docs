@@ -1,122 +1,379 @@
 ---
-title: Getting Started with WireCare
-description: Set up your account, log in, and take your first steps in the platform to begin managing your wildlife rescue operations.
+title: Quickstart with WireCare
+description: Register, confirm your email, log in, and take your first actions in WireCare, including animals, roster, tasks, and role-specific modules.
 ---
 
-## Prerequisites
+## Before you start
 
-<Callout kind="info" title="Before You Begin">
-Ensure you have:
-- A valid email address for account creation
-- Organization details ready (name, location, contact info)
-- Web browser: Chrome, Firefox, or Safari (latest versions recommended)
+<Callout kind="info">
+
+WireCare is a web application used by wildlife rehabilitation organisations to track animals, volunteers, tasks, and finance. Access it in a modern desktop browser such as Chrome, Firefox, or Safari.
+
 </Callout>
 
-## Create Your Free Trial Account
+You need:
 
-Sign up for a free trial to access all features without commitment.
+- A work or personal email address you can access
+- Your name and mobile number for contact records
+- An invitation or confirmation from your organisation about which role you will use (for example, volunteer, coordinator, treasurer, admin)
+
+If your team has not configured WireCare yet, share the [Introduction](/introduction) and [Configuration](/configuration) pages with your local administrator.
+
+## Create your account
+
+New staff and volunteers create their own login using the built-in registration page.
 
 <Steps>
-  <Step title="Visit the Sign-Up Page" icon="external-link">
-    Go to `https://app.wirecare.com/signup`.
+  <Step title="Open the register page" icon="log-in">
+    Go to the `/register` route in your organisation's WireCare deployment. Your coordinator may send this as a link.
+
   </Step>
-  <Step title="Enter Your Details">
-    Provide your email, create a password, and select "Wildlife Rescue Organization" as account type.
+  <Step title="Enter your details" icon="users">
+    Fill in the registration form:
+
+    - **Full name** for identification on rosters and task lists  
+    - **Email address** used for sign-in and notifications  
+    - **Password** that meets your organisation's security rules  
+    - **Phone number** so coordinators can contact you about shifts and animals
+
   </Step>
-  <Step title="Verify Email">
-    Check your inbox for a verification link from WireCare and click it to activate your account.
+  <Step title="Submit and check your inbox" icon="mail">
+    Submit the form. WireCare uses Supabase authentication and sends a verification email to the address you entered.
+    
+    Open the email and select the verification link to confirm your account.
+
   </Step>
-  <Step title="Complete Onboarding">
-    Answer basic questions about your organization size and primary focus (e.g., birds, mammals).
+  <Step title="Return to WireCare" icon="layout-dashboard">
+    After you select the verification link, your browser returns you to WireCare.
+
+    If the verification opened in a different browser or device, go back to the original browser window so you stay in the same session.
+
   </Step>
 </Steps>
 
-## Log In and Set Up Your Organization
+<Callout kind="alert">
 
-Access the dashboard and configure your team.
+WireCare requires a confirmed email. Until you verify your email, you will see limited access and an **Email Verification Required** banner on the dashboard.
 
-<Tabs>
-  <Tab title="Web Browser" icon="globe">
-    <Steps>
-      <Step title="Log In">
-        Navigate to `https://app.wirecare.com/login` and enter your credentials.
-      </Step>
-      <Step title="Organization Setup">
-        Click "Set Up Organization" and enter name, address, and logo upload.
-      </Step>
-    </Steps>
-  </Tab>
-  <Tab title="Mobile App" icon="smartphone">
-    Download from App Store or Google Play, then scan QR code or enter credentials.
-  </Tab>
-</Tabs>
+</Callout>
 
-## Explore the Dashboard
+## Log in and reach the dashboard
 
-The main interface provides quick access to core features.
+Once your email is confirmed, sign in and confirm that you can see the main modules.
+
+<Steps>
+  <Step title="Open the login page" icon="log-in">
+    Go to `/login`. The root route `/` also redirects to the login page.
+
+  </Step>
+  <Step title="Sign in" icon="users">
+    Enter the same email and password you used during registration, then submit.
+
+    If the credentials are valid, you move into the authenticated part of the app and the navigation bar appears at the top.
+
+  </Step>
+  <Step title="Confirm email status" icon="mail">
+    If your email is not yet confirmed, the dashboard shows an **Email Verification Required** banner.
+
+    Open the latest verification email from WireCare, select the link, then refresh the dashboard.
+
+  </Step>
+  <Step title="Locate the main navigation" icon="layout-dashboard">
+    After confirmation, the navbar shows core modules such as:
+
+    - **Dashboard**  
+    - **Animals**  
+    - **Roster**  
+    - **Shift Tasks** (animal care tasks)  
+    - **Foliage Map**  
+    - **Possum Helper**  
+    - **Resources**
+
+    Depending on your role, you may also see **Finance** or **Admin Panel** sections.
+
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+
+If you cannot access the dashboard after login, review the dedicated guide in the Help Center: [Cannot Access Dashboard](/help-center/troubleshooting/cannot-access-dashboard).
+
+</Callout>
+
+## What you will work with first
+
+Most users start in a small set of core modules. The exact modules you see depend on your role.
 
 <Columns cols={3}>
-  <Card title="Animals" icon="paw" href="#animal-management">
-    View intake list, health logs, and release tracking.
+  <Card title="Dashboard" href="#role-based-first-steps" icon="gauge" cta="View role-based setup">
+    High-level overview of your current animals, shifts, and key links based on your permissions.
   </Card>
-  <Card title="Volunteers" icon="users" href="#volunteer-coordination">
-    Manage shifts, attendance, and assignments.
+  <Card title="Animals" href="#record-your-first-animal" icon="paw-print" cta="Add a new animal">
+    Register new animals, view current cases, and review their care history.
   </Card>
-  <Card title="Tasks" icon="check-square" href="#daily-tasks">
-    Review daily care checklists and observations.
+  <Card title="Roster & Tasks" href="#join-the-roster-and-tasks" icon="clipboard-check" cta="Start on the roster">
+    View current and future shifts, roster allocations, and animal care task lists.
   </Card>
 </Columns>
 
-## Complete Your First Animal Intake
+<Columns cols={3}>
+  <Card title="Resources" href="#explore-maps-and-resources" icon="book-open" cta="Browse resources">
+    Central library of documents, guides, and reference material for your branch.
+  </Card>
+  <Card title="Maps & Helpers" href="#explore-maps-and-resources" icon="map-pin" cta="Open foliage map">
+    Foliage Map and Possum Helper tools to support rescue planning and habitat decisions.
+  </Card>
+  <Card title="Finance & Admin" href="#finance-and-admin-access" icon="shield" cta="Check your access">
+    Treasurer and administrator tools. Only visible if your role allows access.
+  </Card>
+</Columns>
 
-Record a new rescue to start tracking care.
+## Role-based first steps
+
+Different roles use WireCare differently on day one. Follow the tab that best matches your role.
+
+<Tabs>
+  <Tab title="Volunteer / Carer" icon="users">
+    <Steps>
+      <Step title="Confirm you can see animals and roster" icon="layout-dashboard">
+        Once logged in, check that the navbar includes **Animals**, **Roster**, **Shift Tasks**, and **Resources**.
+
+        If you see an empty dashboard with no animals or rosters, your account may not be linked to a branch yet.
+
+      </Step>
+      <Step title="Review your current animals" icon="paw-print">
+        Select **Animals** to open the `/animals` route.
+
+        Use this list to see animals currently assigned to your branch.
+
+      </Step>
+      <Step title="Check your roster and tasks" icon="clipboard-check">
+        Select **Roster** to open `/roster` and see current or upcoming assignments.
+
+        Then open **Shift Tasks** or **Animal Care Tasks** at `/animal-care-tasks` to view daily care work, such as feeding or medication lists.
+
+      </Step>
+      <Step title="Access resources" icon="book-open">
+        Select **Resources** to open `/resources`. Your organisation stores care protocols, contact trees, and other reference material here.
+
+        Keep this open in a separate tab if you need to refer to procedures while working.
+
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Coordinator" icon="calendar">
+    <Steps>
+      <Step title="Check branch animals" icon="paw-print">
+        Open **Animals** (`/animals`) to confirm that animals for your branch load correctly.
+
+        If you do not see the expected animals, your user may not be assigned to the right branch. Ask an Admin to confirm your branch and role mapping.
+
+      </Step>
+      <Step title="Add a test animal" icon="square-check">
+        Select **Animals** then use the add route `/animals/add` to create a new record.
+
+        Enter a realistic test animal for your branch so you can practise intake and task assignment without affecting live data.
+
+      </Step>
+      <Step title="Review future intakes" icon="layout-dashboard">
+        Open **Future Intakes** at `/future-intakes` to see incoming animals that have been flagged in advance.
+
+        Use this to plan capacity, roster coverage, and cage availability.
+
+      </Step>
+      <Step title="Review roster and tasks" icon="clipboard-check">
+        Open `/roster` to see volunteer coverage, then `/animal-care-tasks` to review current task distribution.
+
+        Use these views together when planning who will take which animals or shifts.
+
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Treasurer" icon="dollar-sign">
+    <Steps>
+      <Step title="Confirm Finance access" icon="shield">
+        After login, look for the **Finance** or **Treasurer** item in the navbar, which routes to `/finance`.
+
+        If you cannot see it, your account may not have the Treasurer role yet. Ask an Admin to adjust your role.
+
+      </Step>
+      <Step title="Open Finance module" icon="dollar-sign">
+        Select **Finance** to open `/finance`.
+
+        Review the layout and confirm that any existing financial records for your organisation appear as expected.
+
+      </Step>
+      <Step title="Coordinate with Admin" icon="users">
+        Work with your Admin to confirm which users should have access to finance data and how often records are updated.
+
+        Use this quickstart as a reference for ensuring the right people have the right level of access.
+
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Admin / System Admin" icon="shield">
+    <Steps>
+      <Step title="Open the Admin Panel" icon="layout-dashboard">
+        After login, check for the **Admin Panel** entry in the navbar and open `/admin-panel`.
+
+        From here you manage user accounts, roles, and branches.
+
+      </Step>
+      <Step title="Verify your own role and branch" icon="users">
+        In the Admin tools, confirm that your user has an administrator role and is assigned to the correct branch or organisation-wide scope.
+
+        This ensures you can see all the animals, rosters, and configuration you expect.
+
+      </Step>
+      <Step title="Check that each key role exists" icon="clipboard-check">
+        Review user roles to ensure that you have at least one active:
+
+        - **Coordinator** for each branch  
+        - **Treasurer** if you use the Finance module  
+        - **Admin** or system admin for configuration and user management
+
+        Assign roles and branches where required so staff and volunteers see the correct data.
+
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+<Callout kind="alert">
+
+If a user can log in and see the navbar but no animals, rosters, or branch data, their account is likely missing a role or branch assignment. Ask an Admin to assign an appropriate role and branch in the Admin Panel.
+
+</Callout>
+
+## Record your first animal
+
+Once you can see the **Animals** module and have appropriate permissions, add a real or test animal to confirm the workflow.
 
 <Steps>
-  <Step title="Navigate to Animals" icon="paw">
-    From dashboard, click "Animals" > "New Intake".
+  <Step title="Open the Animals list" icon="paw-print">
+    From the navbar, select **Animals** to open `/animals`.
+
+    Confirm that existing animals (if any) appear with the expected branch context.
+
   </Step>
-  <Step title="Fill Intake Form">
-    Enter details:
-    
-    | Field          | Example Value             |
-    |----------------|---------------------------|
-    | Species        | Bald Eagle                |
-    | ID             | EAG-456                   |
-    | Intake Date    | 2024-10-15                |
-    | Location Found | Forest coordinates: 40.7128° N, 74.0060° W |
-    
-    Add initial health notes and photos.
+  <Step title="Start a new record" icon="square-check">
+    From the Animals view, use the **Add** option to navigate to `/animals/add`.
+
+    WireCare shows the animal intake form for your branch.
+
   </Step>
-  <Step title="Assign Tasks">
-    Generate daily feeding and medication checklists automatically.
+  <Step title="Fill out key details" icon="clipboard-check">
+    Enter core information about the animal, such as species, intake date, location found, and any immediate health notes.
+
+    Use realistic details that make sense for your branch so staff can recognise the case later.
+
   </Step>
-  <Step title="Save and Notify">
-    Save record; team gets notified for care assignments.
+  <Step title="Save and confirm visibility" icon="layout-dashboard">
+    Save the record and return to the `/animals` list.
+
+    Confirm that the new animal appears and that other users with the same branch and appropriate role can see it.
+
   </Step>
 </Steps>
 
-## Add Your First Volunteer
+## Join the roster and tasks
 
-Quickly onboard a volunteer for shifts.
+After confirming animals, ensure your roster and care tasks views are working.
 
-<Expandable title="Volunteer Sign-Up Steps" default-open="true">
-  1. Go to "Volunteers" > "Invite New".
-  2. Enter name, email, phone, and skills (e.g., bird handling).
-  3. Set availability and send invite link.
-  4. Volunteer completes profile via email link.
-</Expandable>
+<Steps>
+  <Step title="Open the roster" icon="calendar">
+    Select **Roster** in the navbar to open `/roster`.
 
-<Callout kind="tip" title="Pro Tip">
-Customize your dashboard notifications in Settings to get real-time alerts for intakes and shift sign-ups.
-</Callout>
+    Review existing and upcoming shifts. Coordinators use this to plan coverage.
 
-## Next Steps
+  </Step>
+  <Step title="Review animal care tasks" icon="clipboard-check">
+    Navigate to `/animal-care-tasks` via **Shift Tasks** or **Animal Care Tasks** in the navbar.
+
+    Confirm that tasks linked to current animals appear as expected and that you can see tasks relevant to your branch.
+
+  </Step>
+  <Step title="Check future work" icon="layout-dashboard">
+    Open `/future-intakes` to review planned animal arrivals and any associated planning tasks.
+
+    Use this information with the roster to identify gaps in coverage.
+
+  </Step>
+</Steps>
+
+## Explore maps and resources
+
+Maps and helper tools provide extra context for field work and habitat decisions.
+
+<Steps>
+  <Step title="Open the Foliage Map" icon="map-pin">
+    Select **Foliage Map** in the navbar to open `/foliage-map`.
+
+    Use this view to explore relevant vegetation or habitat information around your branch area.
+
+  </Step>
+  <Step title="Use Possum Helper" icon="map-pin">
+    Navigate to `/possum-helper`.
+
+    This helper supports possum-related decisions such as suitable release areas and care considerations defined by your organisation.
+
+  </Step>
+  <Step title="Browse Resources" icon="book-open">
+    Open `/resources` via the **Resources** link in the navbar.
+
+    Check that your organisation's documents, policies, and other references are available and accessible to the right roles.
+
+  </Step>
+</Steps>
+
+## Finance and Admin access
+
+Finance and administration tools are restricted to specific roles.
+
+<Steps>
+  <Step title="Check if you see Finance" icon="dollar-sign">
+    Look for **Finance** in the navbar. If it is visible, open `/finance` to confirm the module loads.
+
+    If you are a Treasurer and cannot see it, contact an Admin to update your role.
+
+  </Step>
+  <Step title="Confirm Admin Panel visibility" icon="shield">
+    If you are a system administrator, ensure that the **Admin Panel** entry is visible and opens `/admin-panel`.
+
+    From there, review users, roles, and branches to confirm your organisation's structure is correct.
+
+  </Step>
+  <Step title="Resolve access gaps" icon="users">
+    When someone reports that they cannot see animals, roster entries, or finance data:
+
+    - Check their **role** (volunteer, coordinator, treasurer, admin)  
+    - Check their **branch** assignment  
+    - Adjust these in the Admin Panel, then ask them to log out and back in
+
+  </Step>
+</Steps>
+
+## Next steps
+
+Once you have logged in, confirmed your email, and checked your core modules, you are ready to move beyond the quickstart.
 
 <Columns cols={2}>
-  <Card title="Animal Management" icon="database" href="/docs/animal-management">
-    Dive deeper into health tracking and release planning.
+  <Card title="Review key features" href="/features" icon="book-open" cta="See feature overview">
+    Learn how WireCare models animals, rosters, resources, maps, finance, and administration in more detail.
   </Card>
-  <Card title="Volunteer Coordination" icon="calendar" href="/docs/volunteer-management">
-    Set up rosters and automate shift reminders.
+  <Card title="Tune your configuration" href="/configuration" icon="settings" cta="Adjust configuration">
+    Configure roles, branches, and other options so your organisation matches how you run operations.
+  </Card>
+</Columns>
+
+<Columns cols={2}>
+  <Card title="Browse Help Center" href="/help-center" icon="library" cta="Get help">
+    Find guides, FAQs, and troubleshooting articles for common workflows and issues.
+  </Card>
+  <Card title="Check recent changes" href="/changelog" icon="book-open" cta="View changelog">
+    See what has changed recently in WireCare so you can update your local procedures.
   </Card>
 </Columns>

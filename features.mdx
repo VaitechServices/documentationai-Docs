@@ -1,29 +1,33 @@
 ---
 title: Core Features of WireCare
-description: Explore the essential tools for animal care tracking, volunteer management, financial insights, and more to optimize your rehabilitation workflows.
+description: >-
+  Explore the essential tools for animal care tracking, volunteer management,
+  financial insights, and more to optimize your rehabilitation workflows.
 ---
-
 ## Overview
 
 WireCare provides a comprehensive suite of tools tailored for wildlife rehabilitation organizations. You manage animal care, coordinate volunteers, track finances, and streamline daily operations from a single dashboard. These core features help you focus on rescue efforts while automating routine tasks.
 
-<Callout kind="info">
-Access all features from your dashboard at `https://dashboard.example.com`. Customize views based on your role, such as admin or volunteer.
+<Callout kind="info" collapsed="false">
+  Access all features from your dashboard at `https://dashboard.example.com`. Customize views based on your role, such as admin or volunteer.
 </Callout>
 
 ## Key Features at a Glance
 
-<Columns cols={2}>
-  <Card title="Animal Lifecycle Management" icon="activity" href="#animal-management">
+<Columns cols="2">
+  <Card title="Animal Lifecycle Management" href="#animal-management" icon="activity" cta="Learn More" horizontal="false" target="_self">
     Track animals from intake to release with detailed health records and observations.
   </Card>
-  <Card title="Volunteer Coordination" icon="users" href="#volunteer-coordination">
+
+  <Card title="Volunteer Coordination" href="#volunteer-coordination" icon="users" horizontal="false">
     Schedule shifts, track attendance, and manage your team efficiently.
   </Card>
-  <Card title="Daily Care Tasks" icon="check-square" href="#daily-tasks">
+
+  <Card title="Daily Care Tasks" href="#daily-tasks" icon="check-square" horizontal="false">
     Automate checklists for feedings, medications, and care logging.
   </Card>
-  <Card title="Financial Tracking" icon="trending-up" href="#financial-tracking">
+
+  <Card title="Financial Tracking" href="#financial-tracking" icon="trending-up" horizontal="false">
     Monitor grants, expenses, and generate reports effortlessly.
   </Card>
 </Columns>
@@ -35,19 +39,21 @@ Create detailed profiles for each animal, logging intake details, health observa
 ### Workflow Example
 
 <Steps>
-  <Step title="Intake" icon="arrow-right">
+  <Step title="Intake" icon="arrow-right" title-type="p">
     Register a new animal with species, condition, and initial photos.
   </Step>
-  <Step title="Daily Logs" icon="book-open">
+
+  <Step title="Daily Logs" icon="book-open" title-type="p">
     Add observations like weight, behavior, and treatments.
   </Step>
-  <Step title="Release" icon="check-circle">
+
+  <Step title="Release" icon="check-circle" title-type="p">
     Map release location and mark as completed.
   </Step>
 </Steps>
 
 <Expandable title="Advanced Health Tracking" default-open="false">
-Use custom fields for species-specific data, such as wingspan for birds or hydration levels for mammals.
+  Use custom fields for species-specific data, such as wingspan for birds or hydration levels for mammals.
 </Expandable>
 
 ## Volunteer Coordination
@@ -70,20 +76,21 @@ Manage your volunteer roster with shift sign-ups, automated reminders, and atten
     };
     ```
   </Tab>
+
   <Tab title="Volunteer View" icon="user">
     Sign up for shifts and confirm attendance via mobile.
   </Tab>
 </Tabs>
 
-<Callout kind="tip">
-Enable no-show alerts to maintain reliable coverage for critical care periods.
+<Callout kind="tip" collapsed="false">
+  Enable no-show alerts to maintain reliable coverage for critical care periods.
 </Callout>
 
 ## Daily Care Tasks
 
 Generate automated checklists for each animal's routine needs. You log completions quickly, triggering celebrations and progress updates.
 
-```javascript highlight="2-4" show-lines={true}
+```javascript
 const tasks = [
   { id: 1, animalId: 'owl-123', type: 'feeding', time: '08:00', completed: false },
   { id: 2, animalId: 'owl-123', type: 'medication', time: '12:00', completed: true }
@@ -97,40 +104,44 @@ await markTaskComplete(1);
 
 Track income from grants, donations, and expenses in real-time. Generate PDF reports for audits and budget planning.
 
-| Category     | Description                  | Tracking Features              |
-|--------------|------------------------------|--------------------------------|
-| Grants      | Funding sources             | Budget allocation, milestones |
-| Expenses    | Vet bills, food supplies    | Receipt uploads, categorization |
-| Reports     | Monthly summaries           | PDF export, charts            |
+| Category | Description              | Tracking Features               |
+| -------- | ------------------------ | ------------------------------- |
+| Grants   | Funding sources          | Budget allocation, milestones   |
+| Expenses | Vet bills, food supplies | Receipt uploads, categorization |
+| Reports  | Monthly summaries        | PDF export, charts              |
 
-<CodeGroup tabs="JavaScript,Python">
-```javascript
-// Export financial report
-const exportReport = async (month) => {
-  const data = await fetchFinancials(month);
-  return generatePDF(data);
-};
-```
-```python
-# Python integration example
-import requests
-response = requests.get('https://api.example.com/financials/2024-10')
-report = response.json()
-```
+<CodeGroup show-lines="true" tabs={[]}>
+  ```javascript
+  // Export financial report
+  const exportReport = async (month) => {
+    const data = await fetchFinancials(month);
+    return generatePDF(data);
+  };
+  ```
+
+  ```python
+  # Python integration example
+  import requests
+  response = requests.get('https://api.example.com/financials/2024-10')
+  report = response.json()
+  ```
 </CodeGroup>
 
 ## Next Steps
 
 Integrate these features into your workflows to enhance efficiency. Explore [quickstart](/quickstart) for setup or [authentication](/authentication) for secure access.
 
-<Columns cols={3}>
-  <Card title="Quickstart Guide" icon="rocket" href="/quickstart">
+<Columns cols="3">
+  <Card title="Quickstart Guide" href="/quickstart" icon="rocket" horizontal="false">
     Set up your organization in minutes.
   </Card>
-  <Card title="API Reference" icon="code" href="/authentication">
+
+  <Card title="API Reference" href="/authentication" icon="code" horizontal="false">
     Extend with custom integrations.
   </Card>
-  <Card title="Support" icon="help-circle" href="/help-center">
+
+  <Card title="Support" href="/help-center" icon="help-circle" horizontal="false">
     Get assistance anytime.
   </Card>
 </Columns>
+

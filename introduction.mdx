@@ -1,90 +1,139 @@
 ---
 title: Introduction to WireCare
-description: Discover WireCare, the comprehensive SaaS platform designed for wildlife rehabilitation organizations to streamline operations, manage volunteers, and track animal care.
+description: Learn how WireCare helps wildlife rehabilitation teams manage animals, care tasks, rosters, locations, finance, and field tools in one place.
 ---
-
-<Callout kind="info" title="Starter Kit Template">
-  This documentation was generated as a starter kit template based on your brand. Please review and customize the content to accurately reflect your product's features, APIs, and capabilities.
-</Callout>
-
 ## Overview
 
-WireCare empowers wildlife rehabilitation organizations with a comprehensive SaaS platform. You streamline operations, manage volunteers efficiently, track animal care meticulously, and coordinate rescue efforts—all from one intuitive dashboard. Designed specifically for wildlife welfare, WireCare reduces administrative burden so you focus on what matters: rescuing and rehabilitating animals.
+WireCare centralises day-to-day operations for wildlife rehabilitation teams. You record animal intakes, coordinate volunteer shifts, track care tasks and observations, and keep finance records in a single web app.
 
-Track animals from intake to release, schedule volunteer shifts seamlessly, generate financial reports, and access a centralized resource library. With mobile-friendly tools and automated checklists, WireCare scales with your organization, whether you're a small rescue team or managing multiple sites.
+The app includes dedicated modules for animal records, care workflows, roster scheduling, branch and location management, transactions, and reference resources. Field-focused tools like the Foliage Map and Possum Helper support decision-making on site while role-based access control keeps sensitive data protected.
 
-## Key Features
+<Callout kind="info" collapsed="false">
+  WireCare uses Supabase authentication with role-based access. New users must confirm their email address and be accepted by a Coordinator before accessing the dashboard and data modules.
+</Callout>
 
-WireCare provides powerful tools tailored for wildlife rescue operations. Explore the core capabilities below.
+## Key features
 
-<Columns cols={3}>
-  <Card title="Animal Management" icon="paw" href="#animal-management">
-    Maintain detailed profiles, health records, daily observations, and release tracking for every animal under your care.
+WireCare maps directly to focused modules and routes in the app.
+
+<Columns cols="3">
+  <Card title="Animals and Intakes" href="/features#animals" icon="paw-print" horizontal="false">
+    Manage animal records from intake through ongoing care. Use the animals list and add screens to capture species, intake details, and status.
   </Card>
-  <Card title="Volunteer Coordination" icon="users" href="#volunteer-coordination">
-    Handle schedules, shift sign-ups, attendance, and mobile access to keep your team organized.
-  </Card>
-  <Card title="Daily Care Tasks" icon="check-square" href="#daily-tasks">
-    Automate checklists for feedings, medications, and observations with quick logging and completion feedback.
-  </Card>
-</Columns>
 
-<Columns cols={2}>
-  <Card title="Financial Tracking" icon="dollar-sign" href="#financial-tracking">
-    Monitor grants, expenses, budgets, and generate PDF reports effortlessly.
+  <Card title="Observations" href="/features#observations" icon="eye" horizontal="false">
+    Log observations such as behavior changes, wounds, or feeding responses to build a timeline of each animal's progress.
   </Card>
-  <Card title="Resource Library" icon="library" href="#resource-library">
-    Store training materials, forms, videos, and pinned references in a categorized hub.
+
+  <Card title="Care Tasks" href="/features#care-tasks" icon="square-check" horizontal="false">
+    Schedule and record daily care actions like feedings, medications, and enclosure cleaning so nothing is missed during shifts.
   </Card>
 </Columns>
 
-## Who Should Use WireCare
+<Columns cols="3">
+  <Card title="Future Intakes" href="/features#future-intakes" icon="calendar" horizontal="false">
+    Track expected or planned intakes ahead of time to manage capacity and staffing needs.
+  </Card>
+
+  <Card title="Roster and Shifts" href="/features#roster" icon="users" horizontal="false">
+    Coordinate volunteer and staff shifts using the Roster page.
+  </Card>
+
+  <Card title="Branches and Locations" href="/features#branches" icon="map-pin" horizontal="false">
+    Model branches and locations so you know where animals, people, and resources are based across your organisation.
+  </Card>
+</Columns>
+
+<Columns cols="3">
+  <Card title="Finance and Transactions" href="/features#finance" icon="dollar-sign" horizontal="false">
+    Record income and expenses in the finance module to keep basic oversight of rehabilitation costs and funding.
+  </Card>
+
+  <Card title="Resources Library" href="/features#resources" icon="book-open" horizontal="false">
+    Store protocols, training materials, and reference documents in a shared resources area for consistent care standards.
+  </Card>
+
+  <Card title="Field Tools" href="/features#field-tools" icon="compass" horizontal="false">
+    Use the Foliage Map and Possum Helper utilities to support field assessments, habitat decisions, and species-specific care.
+  </Card>
+</Columns>
+
+<Callout kind="tip" collapsed="false">
+  Review the [Features](/features) page for a deeper breakdown of each module and how it appears in the UI.
+</Callout>
+
+## Who should use WireCare
 
 <ExpandableGroup>
-  <Expandable title="Wildlife Rescue Organizations" default-open="true">
-    Ideal for nonprofits and teams handling animal intake, rehabilitation, and release. You gain end-to-end lifecycle management without complex spreadsheets.
+  <Expandable title="Wildlife rehabilitation teams" default-open="true">
+    Use WireCare as the operational backbone for animal intakes, care planning, observations, and release readiness across one or more locations.
   </Expandable>
-  <Expandable title="Volunteer Coordinators">
-    Perfect if you manage shifts across multiple sites. Features like no-show alerts and mobile sign-ups simplify coordination.
+
+  <Expandable title="Volunteer coordinators and roster managers" default-open="false">
+    Coordinate shifts and coverage using the roster module and care task lists so animals receive consistent attention throughout the day.
   </Expandable>
-  <Expandable title="Administrators and Fundraisers">
-    Track finances and generate reports to support grant applications and donor updates.
+
+  <Expandable title="Treasurers and administrators" default-open="false">
+    Track basic financial transactions, manage branches and locations, and ensure the right staff have access through role-based permissions.
+  </Expandable>
+
+  <Expandable title="Field responders and assessors" default-open="false">
+    Rely on Foliage Map and Possum Helper tools during rescues or site visits to make quicker, data-informed decisions for animals in the field.
   </Expandable>
 </ExpandableGroup>
 
-## Quick Start
+## Quick start
 
-Get up and running in minutes.
+Follow this path to get from first registration to working with core modules.
 
 <Steps>
-  <Step title="Sign Up" icon="user-plus">
-    Visit `https://app.wirecare.com` and create your free account. No credit card required.
+  <Step title="Register an account" icon="user-plus" title-type="p">
+    Go to the <a href="https://app.wirecare.com.au/register" target="_blank" rel="noopener noreferrer">Register</a> page and create a new user with your email address and password.
   </Step>
-  <Step title="Create Your Organization" icon="building">
-    Enter basic details about your rescue operation, including location and team size.
+
+  <Step title="Confirm your email" icon="mail" title-type="p">
+    Check your inbox and complete the email confirmation link. WireCare enforces email confirmation before granting access.
   </Step>
-  <Step title="Add Your First Animal" icon="paw">
-    Use the intake form to log details like species, condition, and intake date.
+
+  <Step title="Sign in and open the dashboard" icon="log-in" title-type="p">
+    After confirmation, visit `/login` to sign in. On success, the app redirects you to `/dashboard` with an overview of available modules.
   </Step>
-  <Step title="Invite Volunteers" icon="users">
-    Send invites via email and set up your first shift roster.
+
+  <Step title="Add your first animal intake" icon="paw-print" title-type="p">
+    Navigate to `/animals/add` to create an animal record. Capture key intake information so it appears in the `/animals` list.
+  </Step>
+
+  <Step title="Set up an initial roster" icon="users" title-type="p">
+    Open `/roster` to review or create upcoming shifts, aligning volunteer availability with current and future intake demands.
   </Step>
 </Steps>
 
-<Callout kind="tip">
-  Explore the dashboard tutorial in the [Quickstart](/quickstart) guide for advanced setup.
+<Callout kind="tip" collapsed="false">
+  Move on to the [Quickstart](/quickstart) guide for a more detailed walkthrough of configuration and everyday workflows.
 </Callout>
 
-## Next Steps
+## Next steps
 
-<Columns cols={3}>
-  <Card title="Quickstart Guide" icon="book-open" href="/quickstart">
-    Follow step-by-step instructions to configure your organization.
+<Columns cols="3">
+  <Card title="Quickstart" href="/quickstart" icon="zap" horizontal="false">
+    Configure core modules, confirm your first login, and run through a typical day using WireCare.
   </Card>
-  <Card title="Authentication" icon="shield" href="/authentication">
-    Secure your account with API keys and user roles.
+
+  <Card title="Features" href="/features" icon="book-open" horizontal="false">
+    Explore each module in detail, including animals, roster, finance, resources, foliage map, and Possum Helper.
   </Card>
-  <Card title="Changelog" icon="git-branch" href="/changelog">
-    Stay updated with the latest features and improvements.
+
+  <Card title="Configuration" href="/configuration" icon="settings" horizontal="false">
+    Adjust organisation-level settings, roles, and module options to match your rescue's structure.
+  </Card>
+</Columns>
+
+<Columns cols="2">
+  <Card title="Help Center" href="/help-center" icon="help-circle" horizontal="false">
+    Find FAQs, troubleshooting steps, and task-focused guides for common scenarios.
+  </Card>
+
+  <Card title="Changelog" href="/changelog" icon="clock" horizontal="false">
+    Review recent changes to WireCare so you understand new capabilities and behavior.
   </Card>
 </Columns>
