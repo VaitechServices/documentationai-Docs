@@ -1,0 +1,136 @@
+---
+title: Core Features of WireCare
+description: Explore the essential tools for animal care tracking, volunteer management, financial insights, and more to optimize your rehabilitation workflows.
+---
+
+## Overview
+
+WireCare provides a comprehensive suite of tools tailored for wildlife rehabilitation organizations. You manage animal care, coordinate volunteers, track finances, and streamline daily operations from a single dashboard. These core features help you focus on rescue efforts while automating routine tasks.
+
+<Callout kind="info">
+Access all features from your dashboard at `https://dashboard.example.com`. Customize views based on your role, such as admin or volunteer.
+</Callout>
+
+## Key Features at a Glance
+
+<Columns cols={2}>
+  <Card title="Animal Lifecycle Management" icon="activity" href="#animal-management">
+    Track animals from intake to release with detailed health records and observations.
+  </Card>
+  <Card title="Volunteer Coordination" icon="users" href="#volunteer-coordination">
+    Schedule shifts, track attendance, and manage your team efficiently.
+  </Card>
+  <Card title="Daily Care Tasks" icon="check-square" href="#daily-tasks">
+    Automate checklists for feedings, medications, and care logging.
+  </Card>
+  <Card title="Financial Tracking" icon="trending-up" href="#financial-tracking">
+    Monitor grants, expenses, and generate reports effortlessly.
+  </Card>
+</Columns>
+
+## Animal Lifecycle Management
+
+Create detailed profiles for each animal, logging intake details, health observations, and release information. You assign unique IDs and track progress through rehabilitation stages.
+
+### Workflow Example
+
+<Steps>
+  <Step title="Intake" icon="arrow-right">
+    Register a new animal with species, condition, and initial photos.
+  </Step>
+  <Step title="Daily Logs" icon="book-open">
+    Add observations like weight, behavior, and treatments.
+  </Step>
+  <Step title="Release" icon="check-circle">
+    Map release location and mark as completed.
+  </Step>
+</Steps>
+
+<Expandable title="Advanced Health Tracking" default-open="false">
+Use custom fields for species-specific data, such as wingspan for birds or hydration levels for mammals.
+</Expandable>
+
+## Volunteer Coordination
+
+Manage your volunteer roster with shift sign-ups, automated reminders, and attendance tracking. You view availability calendars and send notifications directly from the platform.
+
+<Tabs>
+  <Tab title="Admin View" icon="settings">
+    Create weekly rosters and assign tasks.
+
+    ```javascript
+    // Example API call to create a shift (via dashboard integrations)
+    const createShift = async (volunteerId, taskId) => {
+      const response = await fetch('https://api.example.com/shifts', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${YOUR_TOKEN}` },
+        body: JSON.stringify({ volunteerId, taskId, startTime: '2024-10-20T09:00:00Z' })
+      });
+      return response.json();
+    };
+    ```
+  </Tab>
+  <Tab title="Volunteer View" icon="user">
+    Sign up for shifts and confirm attendance via mobile.
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+Enable no-show alerts to maintain reliable coverage for critical care periods.
+</Callout>
+
+## Daily Care Tasks
+
+Generate automated checklists for each animal's routine needs. You log completions quickly, triggering celebrations and progress updates.
+
+```javascript highlight="2-4" show-lines={true}
+const tasks = [
+  { id: 1, animalId: 'owl-123', type: 'feeding', time: '08:00', completed: false },
+  { id: 2, animalId: 'owl-123', type: 'medication', time: '12:00', completed: true }
+];
+
+// Mark task complete
+await markTaskComplete(1);
+```
+
+## Financial Tracking
+
+Track income from grants, donations, and expenses in real-time. Generate PDF reports for audits and budget planning.
+
+| Category     | Description                  | Tracking Features              |
+|--------------|------------------------------|--------------------------------|
+| Grants      | Funding sources             | Budget allocation, milestones |
+| Expenses    | Vet bills, food supplies    | Receipt uploads, categorization |
+| Reports     | Monthly summaries           | PDF export, charts            |
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+// Export financial report
+const exportReport = async (month) => {
+  const data = await fetchFinancials(month);
+  return generatePDF(data);
+};
+```
+```python
+# Python integration example
+import requests
+response = requests.get('https://api.example.com/financials/2024-10')
+report = response.json()
+```
+</CodeGroup>
+
+## Next Steps
+
+Integrate these features into your workflows to enhance efficiency. Explore [quickstart](/quickstart) for setup or [authentication](/authentication) for secure access.
+
+<Columns cols={3}>
+  <Card title="Quickstart Guide" icon="rocket" href="/quickstart">
+    Set up your organization in minutes.
+  </Card>
+  <Card title="API Reference" icon="code" href="/authentication">
+    Extend with custom integrations.
+  </Card>
+  <Card title="Support" icon="help-circle" href="/help-center">
+    Get assistance anytime.
+  </Card>
+</Columns>

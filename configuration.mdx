@@ -1,0 +1,133 @@
+---
+title: Managing Users and Settings
+description: Configure role-based access, organization branches, and platform preferences to ensure secure and efficient team collaboration.
+---
+
+## Overview
+
+Vaitech Services provides flexible configuration options to manage users, branches, notifications, and resources. You customize roles for secure access, organize branches for multi-location teams, set notification preferences, and maintain your resource library. These settings ensure smooth operations across your wildlife rehabilitation organization.
+
+<Callout kind="info">
+Review your organization's structure before making changes. Changes to roles or branches affect all users immediately.
+</Callout>
+
+## Setting Up User Roles and Permissions
+
+Define roles like `admin`, `volunteer`, or `viewer` to control access to animal profiles, volunteer schedules, and financial reports.
+
+Use the dashboard at `https://dashboard.example.com/settings/roles` to create and assign roles.
+
+<Steps>
+  <Step title="Access Roles" icon="settings">
+    Navigate to **Organization > Roles** in the sidebar.
+  </Step>
+  <Step title="Create Role" icon="user-plus">
+    Click **New Role**, enter a name, and select permissions.
+  </Step>
+  <Step title="Assign Users" icon="users">
+    Go to **Users**, select individuals, and apply the role.
+  </Step>
+</Steps>
+
+<ParamField path="role" param-type="string" required="true">
+  Role identifier, e.g., `admin` or `volunteer`.
+</ParamField>
+
+<ParamField path="permissions" param-type="array" required="false">
+  Array of allowed actions: `["read_animals", "edit_volunteers", "view_finances"]`.
+</ParamField>
+
+## Managing Organization Branches and Transfers
+
+Branches help multi-site organizations like regional rescue centers track animals and volunteers separately.
+
+<Tabs>
+  <Tab title="Create Branch" icon="map-pin">
+    From **Organization > Branches**, click **New Branch**.
+
+    ```javascript
+    // API example to create branch
+    const response = await fetch('https://api.example.com/v1/branches', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${YOUR_TOKEN}` },
+      body: JSON.stringify({
+        name: 'Northern Rescue Center',
+        location: { lat: 40.7128, lng: -74.0060 }
+      })
+    });
+    ```
+  </Tab>
+  <Tab title="Transfer Users" icon="arrow-right-left">
+    Select users in **Users > Bulk Actions** and choose target branch.
+
+    <ParamField query="branch_id" param-type="string" required="true">
+      Target branch identifier.
+    </ParamField>
+  </Tab>
+</Tabs>
+
+## Customizing Notifications and Preferences
+
+Tailor email and in-app alerts for tasks, shift sign-ups, and animal health updates.
+
+<CodeGroup tabs="Dashboard,API">
+  ```javascript
+  // Update preferences via dashboard form
+  {
+    "email_notifications": true,
+    "task_reminders": "daily",
+    "volunteer_alerts": ["shift_change", "no_show"]
+  }
+  ```
+  ```bash
+  curl -X PATCH https://api.example.com/v1/preferences \
+    -H "Authorization: Bearer YOUR_TOKEN" \
+    -d '{"task_reminders": "hourly"}'
+  ```
+</CodeGroup>
+
+<Columns cols={2}>
+  <Card title="Email Settings" icon="mail" href="#email-prefs">
+    Configure digest frequency and recipients.
+  </Card>
+  <Card title="In-App Alerts" icon="bell" href="#app-alerts">
+    Set urgency levels for critical updates.
+  </Card>
+</Columns>
+
+## Accessing and Updating Resource Libraries
+
+Maintain training docs, forms, and videos in a centralized library.
+
+<Expandable title="Upload New Resources" default-open="true">
+  1. Go to **Resources > Library**.
+  2. Drag files or use **Upload**.
+  3. Add categories like `Training` or `Forms`.
+
+  ```javascript
+  // API upload example
+  const formData = new FormData();
+  formData.append('file', resourceFile);
+  formData.append('category', 'training');
+
+  await fetch('https://api.example.com/v1/resources', {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${YOUR_TOKEN}` },
+    body: formData
+  });
+  ```
+</Expandable>
+
+<Expandable title="Advanced Permissions" default-open="false">
+  Control who views or edits resources with role-based access.
+
+  | Permission | Description | Roles |
+  |------------|-------------|-------|
+  | read      | View only  | All  |
+  | write     | Edit/upload| Admin, Manager |
+  | admin     | Delete     | Admin |
+</Expandable>
+
+<Callout kind="tip">
+Test configurations in a staging branch before applying to production. Use the API for automation in larger teams.
+</Callout>

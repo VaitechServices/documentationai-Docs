@@ -1,0 +1,127 @@
+---
+title: Changelog
+description: Track the latest updates, improvements, and new features released in WireCare to stay informed on platform enhancements.
+---
+
+## Recent Updates
+
+Stay current with the newest releases. Review the highlights below to understand new capabilities, fixes, and changes that enhance your wildlife rescue operations.
+
+<Update label="2024-11-15" description="v2.1.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- **Foliage Mapping**: Interactive maps now let you locate and manage food sources for rehabilitation with GPS integration and customizable markers.
+- **Mobile App Push Notifications**: Receive real-time alerts for volunteer shifts, care tasks, and animal health updates directly on your phone.
+
+## Improvements
+
+- Enhanced volunteer roster with drag-and-drop scheduling and conflict detection.
+- Faster loading for animal profiles by optimizing database queries.
+
+## Bug Fixes
+
+- Fixed attendance tracking sync issues across devices.
+- Resolved PDF report generation errors for financial summaries.
+
+</Update>
+
+<Update label="2024-10-20" description="v2.0.0" tags={["feature", "breaking"]}>
+
+## New Features
+
+- **Resource Library Overhaul**: Centralized hub with categorized documents, video embeds, and pinned favorites for quick access.
+- **Grant Tracking Dashboard**: Visualize budgets, expenses, and remaining funds with interactive charts.
+
+## Breaking Changes
+
+- Updated API endpoints for animal intake; migrate to `/v2/animals/intake` from legacy paths.
+- Volunteer authentication now requires JWT tokens instead of API keys.
+
+## Bug Fixes
+
+- Corrected daily care task automation for recurring medications.
+- Improved release location mapping accuracy.
+
+</Update>
+
+<Update label="2024-09-10" description="v1.9.0" tags={["bugfix", "improvement"]}>
+
+## Improvements
+
+- Added completion animations and progress badges for daily care checklists.
+- Streamlined financial reports with export options to CSV alongside PDF.
+
+## Bug Fixes
+
+- Fixed no-show alerts not triggering for volunteer shifts.
+- Resolved mobile shift management glitches on iOS devices.
+
+</Update>
+
+## Upcoming Changes
+
+<Callout kind="info" title="What's Coming Next">
+Prepare for v2.2.0 in December, featuring AI-powered health predictions for animals and advanced analytics for rescue trends. No breaking changes planned, but review the beta release notes soon.
+</Callout>
+
+## How to Update and Stay Informed
+
+Follow these steps to keep your WireCare instance up to date and never miss a release.
+
+<Steps>
+  <Step title="Check for Updates" icon="refresh-cw">
+    Log in to your dashboard at `https://dashboard.example.com` and navigate to **Settings > Updates**. Click **Check Now** to see available versions.
+  </Step>
+  <Step title="Apply the Update" icon="upload">
+    Select the latest version and follow the guided migration. Backup your data first.
+  </Step>
+  <Step title="Review Changes" icon="book-open">
+    Read the full release notes linked in your update confirmation email.
+  </Step>
+</Steps>
+
+## Subscription Options
+
+Choose your preferred way to receive notifications about new releases.
+
+<Tabs>
+  <Tab title="Email Newsletter" icon="mail">
+    Sign up at `https://vaitechservices.com/newsletter` to get weekly summaries of changes, including feature spotlights and migration guides.
+  </Tab>
+  <Tab title="RSS Feed" icon="rss">
+    Add this feed to your reader: `https://docs.example.com/changelog/rss.xml`. Get instant updates on new `Update` entries.
+  </Tab>
+  <Tab title="GitHub Releases" icon="github">
+    Follow the repository at `https://github.com/vaitechservices/wirecare` for detailed changelogs, tags, and community discussions.
+  </Tab>
+</Tabs>
+
+## Quick Links
+
+<Columns cols={3}>
+  <Card title="Migration Guide" icon="help-circle" href="/docs/migration">
+    Step-by-step instructions for upgrading between major versions.
+  </Card>
+  <Card title="API Changes" icon="code" href="/docs/api-reference">
+    Review endpoint updates and authentication requirements.
+  </Card>
+  <Card title="Feedback" icon="message-circle" href="https://feedback.example.com" target="_blank">
+    Share your thoughts on features and suggest improvements.
+  </Card>
+</Columns>
+
+<Expandable title="Detailed v2.0 Migration Notes" default-open="false">
+  If you're on v1.x, update your config file:
+
+  ```javascript
+  // Old config
+  apiKey: 'YOUR_API_KEY',
+
+  // New config (v2.0+)
+  jwtToken: 'YOUR_JWT_TOKEN',
+  baseURL: 'https://api.example.com/v2',
+  ```
+
+  Test in staging before production deployment.
+</Expandable>
