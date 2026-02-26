@@ -1,0 +1,525 @@
+---
+title: Animals
+description: Manage live wildlife cases via the Animals in Care page, including search, filters, observations, statuses, images, and role-based permissions.
+---
+## Overview
+
+Use the **Animals in Care** page to manage every animal currently recorded in WireCare. From here you can search, filter, open full details, record observations, update status, and add new animals.
+
+<Callout kind="info" collapsed="false">
+  Access to edit and delete actions depends on your role. Volunteers are mostly view-only, Coordinators and Treasurers can update records, and SuperAdmin accounts are blocked from making changes.
+</Callout>
+
+## Navigating to Animals and related pages
+
+You access the Animals module from the main navigation:
+
+- **Animals in Care** → `/animals`
+
+- **Add Animal** button → `/animals/add`
+
+- **Future Intakes** link → `/future-intakes` (for animals that are expected but not yet admitted)
+
+Use **Future Intakes** when you want to register an upcoming animal before it arrives. When the animal is actually admitted, move to **Animals in Care** and add or update the full record.
+
+<Columns cols={3}>
+  <Card title="Quickstart" href="/quickstart" icon="rocket" cta="Set up WireCare" horizontal="false">
+    Get WireCare ready for use, including branches and basic configuration, before you start adding animals.
+  </Card>
+
+  <Card title="Future Intakes" href="/future-intakes" icon="calendar" cta="Plan upcoming animals" horizontal="false">
+    Record animals that are expected to come into care soon, then convert them into full Animals records when they arrive.
+  </Card>
+
+  <Card title="Features overview" href="/features" icon="book-open" cta="Explore modules" horizontal="false">
+    See how Animals in Care fits with other modules such as calls, finances, and reporting.
+  </Card>
+</Columns>
+
+## Key areas of the Animals module
+
+The Animals workflow has three main areas:
+
+<Tabs>
+  <Tab title="Animals list" icon="list">
+    The **Animals in Care** list shows all animals for your branch in a searchable, filterable table (desktop) or card view (mobile). Use it to quickly find a record and see high-level details such as species, status, and enclosure.
+  </Tab>
+
+  <Tab title="Animal details" icon="info">
+    The **animal details** view opens in a modal with sections for core details (species, condition, enclosure, dates) and management actions such as editing, updating status, and managing images.
+  </Tab>
+
+  <Tab title="Observations" icon="clipboard-list">
+    The **Observations** section within the animal details tracks day‑to‑day care: weight, food, meds, behaviour and more. You can add new entries, edit or delete existing ones (with the right role), and export a PDF history.
+  </Tab>
+</Tabs>
+
+## Animals list and search
+
+The **Animals in Care** page lists animals for your current branch. On larger screens, animals appear in a table with sortable columns; on smaller screens they appear as cards.
+
+### Information shown for each animal
+
+Each row or card includes:
+
+- Profile image (if uploaded)
+
+- Name
+
+- Enclosure or cage ID
+
+- Species
+
+- Condition
+
+- Status badge
+
+- Intake date
+
+- Age band
+
+- Gender
+
+Statuses use the following labels:
+
+- **In Care**
+
+- **Released**
+
+- **Deceased**
+
+- **Transferred**
+
+Age bands appear as **Baby**, **Juvenile**, or **Adult**, using Australian date formatting for dates (for example, `15 Jan 2026`).
+
+<Callout kind="tip" collapsed="false">
+  If you manage multiple branches, the list only shows animals for the branch you are currently viewing. Switch branches from the main app controls to see a different set of animals.
+</Callout>
+
+### Searching animals
+
+Use the search box above the list to quickly narrow down animals. The placeholder explains what you can search for:
+
+> `Search animals by name, species, condition, callsheet ID, enclosure ID, age, or gender...`
+
+Type any part of a name, ID, or descriptor and the list updates to show matching animals.
+
+### Filtering by status
+
+Next to the search box is a status dropdown with options:
+
+- **All**
+
+- **In Care**
+
+- **Released**
+
+- **Deceased**
+
+- **Transferred**
+
+Choose a status to limit the list to animals with that status. Choose **All** to see every animal for your branch.
+
+### Sorting the list
+
+Table headers are clickable and support ascending/descending sorting. Common sortable columns include:
+
+- Name
+
+- Intake date
+
+- Status
+
+- Enclosure/cage ID
+
+- Species
+
+Click a header once to sort ascending, and again to reverse the order. A small indicator shows the active sort direction.
+
+## Viewing animal details
+
+Select an animal row or card to open the **animal details** modal. This gives you a fuller view without leaving the list.
+
+The details modal typically includes:
+
+- Core record fields
+
+- Status and dates
+
+- Enclosure and callsheet information
+
+- Notes and image
+
+- The **Observations** section
+
+### Animal record fields
+
+These are the main fields that make up an animal record.
+
+<ParamField path="name" type="string" required="false">
+  Animal's display name used throughout the app. Leave blank if you prefer to identify by callsheet ID only.
+</ParamField>
+
+<ParamField path="species" type="string" required="false">
+  Species, usually selected from an autocomplete list so common species are consistent across the system.
+</ParamField>
+
+<ParamField path="age" type="string" required="false">
+  Age band for the animal: Baby, Juvenile, or Adult. Used for reporting and triage.
+</ParamField>
+
+<ParamField path="weight" type="number" required="false">
+  Latest known weight at intake (in grams or kilograms, depending on your local practice). You can track ongoing weights via Observations.
+</ParamField>
+
+<ParamField path="gender" type="string" required="true">
+  Gender of the animal: Male, Female, or Unknown. This field is required when creating or editing a record.
+</ParamField>
+
+<ParamField path="condition" type="string" required="false">
+  Brief description of the presenting condition or reason for care (for example, wing fracture, orphaned joey).
+</ParamField>
+
+<ParamField path="status" type="string" required="false">
+  Current status of the animal: In Care, Released, Deceased, or Transferred. Status controls which actions are available and how the case appears in reporting.
+</ParamField>
+
+<ParamField path="intakeDate" type="date" required="false">
+  Date the animal was admitted into care. Displayed in Australian date format.
+</ParamField>
+
+<ParamField path="callsheetId" type="string" required="true">
+  Link back to the originating call or incident. Required so you can trace the animal to the original callsheet.
+</ParamField>
+
+<ParamField path="exitDate" type="date" required="false">
+  Date the animal left care. Required when changing status away from In Care (released, deceased, or transferred).
+</ParamField>
+
+<ParamField path="enclosure" type="string" required="false">
+  Enclosure or cage ID where the animal is housed. Helps volunteers find the right animal during feeding rounds.
+</ParamField>
+
+<ParamField path="notes" type="string" required="false">
+  Any additional notes that do not fit other fields, such as special handling instructions or vet recommendations.
+</ParamField>
+
+<ParamField path="image" type="file" required="false">
+  Profile image for the animal. Coordinators and Treasurers can upload or replace the image; they can also remove it if needed.
+</ParamField>
+
+<Callout kind="info" collapsed="false">
+  Volunteers see all of these details but cannot update them. Coordinators and Treasurers can edit fields, upload or delete images, and change status. SuperAdmin accounts are intentionally blocked from edits in this UI.
+</Callout>
+
+## Working with observations
+
+Observations track the day‑to‑day care an animal receives. You access them from the **Observations** tab or section in the animal details modal.
+
+Each observation includes:
+
+<ParamField path="dateTime" type="datetime" required="false">
+  Date and time of the observation. Used to order entries and track progress over time.
+</ParamField>
+
+<ParamField path="notes" type="string" required="true">
+  Free‑text notes describing what you observed or did during this check. This is the only required field for an observation.
+</ParamField>
+
+<ParamField path="weight" type="number" required="false">
+  Weight recorded at the time of the observation. Use this to monitor growth or decline between checks.
+</ParamField>
+
+<ParamField path="food" type="string" required="false">
+  What the animal was fed, and how much. Useful for diet tracking and troubleshooting.
+</ParamField>
+
+<ParamField path="meds" type="string" required="false">
+  Medication given, including dosage and route if relevant.
+</ParamField>
+
+<ParamField path="behaviour" type="string" required="false">
+  Notes on behaviour, such as alertness, mobility, or stress indicators.
+</ParamField>
+
+<ParamField path="urine" type="string" required="false">
+  Details about urine output or quality, where this is being tracked.
+</ParamField>
+
+The observations list supports sorting:
+
+- **Newest first** (most recent at the top)
+
+- **Oldest first** (chronological review)
+
+There is also a **PDF export** option that creates a downloadable observation history for the current animal.
+
+<Callout kind="tip" collapsed="false">
+  Use PDF export when sharing an animal's history with vets, other carers, or regulators. The export includes the full observation history in date order.
+</Callout>
+
+## Common workflows
+
+### Add a new animal
+
+Use the **Add Animal** button from the Animals in Care page to create a new record at intake time.
+
+<Steps>
+  <Step title="Open the Add Animal form" icon="plus" title-type="p">
+    Click **Add Animal** at the top of the **Animals in Care** page. The Animal form opens on `/animals/add` with empty fields.
+  </Step>
+
+  <Step title="Enter core details" icon="edit" title-type="p">
+    Fill in the key identifying details:
+
+    <ParamField path="name" type="string" required="false">
+      Animal name, if you assign one at intake.
+    </ParamField>
+
+    <ParamField path="species" type="string" required="false">
+      Species, using the autocomplete list where possible.
+    </ParamField>
+
+    <ParamField path="gender" type="string" required="true">
+      Gender (Male, Female, or Unknown). This is required.
+    </ParamField>
+
+    <ParamField path="age" type="string" required="false">
+      Age band (Baby, Juvenile, Adult).
+    </ParamField>
+
+    <ParamField path="condition" type="string" required="false">
+      Presenting condition or reason for admission.
+    </ParamField>
+  </Step>
+
+  <Step title="Link to the callsheet and dates" icon="calendar" title-type="p">
+    Record how this animal entered care:
+
+    <ParamField path="callsheetId" type="string" required="true">
+      Required link to the original callsheet for this animal.
+    </ParamField>
+
+    <ParamField path="intakeDate" type="date" required="false">
+      Admission date. Use the date the animal physically entered care.
+    </ParamField>
+  </Step>
+
+  <Step title="Set status, enclosure and notes" icon="settings" title-type="p">
+    Finish setting up the case:
+
+    <ParamField path="status" type="string" required="false">
+      Leave as In Care when first admitting an animal.
+    </ParamField>
+
+    <ParamField path="enclosure" type="string" required="false">
+      Enclosure or cage ID where the animal will be housed.
+    </ParamField>
+
+    <ParamField path="notes" type="string" required="false">
+      Any extra instructions, such as isolation needs or handling restrictions.
+    </ParamField>
+  </Step>
+
+  <Step title="Upload an image (optional)" icon="upload" title-type="p">
+    If available, upload a profile image so volunteers can quickly confirm they are caring for the right animal. Use the image upload control in the form.
+  </Step>
+
+  <Step title="Save the animal" icon="check-circle" title-type="p">
+    Submit the form. On success, the new animal appears in the **Animals in Care** list with the details you entered. Check that the status is **In Care** and that the enclosure and species look correct.
+  </Step>
+</Steps>
+
+<Callout kind="alert" collapsed="false">
+  If you miss required fields such as **Gender** or **Callsheet ID**, the form prevents saving until you provide them. Check for any field‑level error messages and correct them.
+</Callout>
+
+### Record an observation
+
+Recording regular observations keeps the animal's history accurate and makes handovers between volunteers easier.
+
+<Steps>
+  <Step title="Open the animal" icon="search" title-type="p">
+    On the **Animals in Care** page, use search or filters to find the animal, then click the row or card to open the details modal.
+  </Step>
+
+  <Step title="Go to Observations" icon="clipboard-list" title-type="p">
+    Switch to the **Observations** tab or section within the modal. You see the existing list of observations, sorted by newest or oldest.
+  </Step>
+
+  <Step title="Add a new observation" icon="plus" title-type="p">
+    Click **Add Observation**. A form appears with fields for:
+
+    <ParamField path="notes" type="string" required="true">
+      Required notes describing what you observed or did.
+    </ParamField>
+
+    <ParamField path="dateTime" type="datetime" required="false">
+      Observation date/time (often defaults to now).
+    </ParamField>
+
+    <ParamField path="weight" type="number" required="false">
+      Current weight.
+    </ParamField>
+
+    <ParamField path="food" type="string" required="false">
+      Food given, if any.
+    </ParamField>
+
+    <ParamField path="meds" type="string" required="false">
+      Medication details, if any.
+    </ParamField>
+
+    <ParamField path="behaviour" type="string" required="false">
+      Behaviour notes.
+    </ParamField>
+
+    <ParamField path="urine" type="string" required="false">
+      Urine notes, if you track this.
+    </ParamField>
+
+    Enter the information you want to record.
+  </Step>
+
+  <Step title="Save and verify" icon="check-circle" title-type="p">
+    Save the observation. It appears in the list according to your selected sort order (usually at the top when sorted by newest). Confirm that the time, weight, and notes look correct.
+  </Step>
+</Steps>
+
+<Callout kind="info" collapsed="false">
+  Volunteers, Coordinators, and Treasurers can typically add observations. Editing or deleting existing observations may be restricted to Coordinators and Treasurers depending on your configuration.
+</Callout>
+
+### Update images and edit details
+
+Coordinators and Treasurers can update an animal's details from the details modal.
+
+- Use **Edit** to update fields such as species, condition, enclosure, and notes.
+
+- Use the **image upload** control to add or replace the profile photo.
+
+- Use the **remove image** option if the current photo is no longer accurate.
+
+When you save, the Animals in Care list updates immediately with the new details and image.
+
+<Callout kind="alert" collapsed="false">
+  Deleting an animal permanently removes it from the Animals in Care list and its details view. Only Coordinators and Treasurers see the delete option, and the app asks you to confirm before continuing.
+</Callout>
+
+## Managing statuses: In Care, Released, Deceased, Transferred
+
+Status changes control where an animal appears and what additional information you must record.
+
+### In Care
+
+- Default status when you first add an animal.
+
+- Animal appears prominently in the **Animals in Care** list.
+
+- Use observations to track daily care.
+
+### Released
+
+Use **Released** when the animal has been returned to the wild.
+
+<Steps>
+  <Step title="Open the animal details" icon="search" title-type="p">
+    Find the animal in **Animals in Care** and open the details modal.
+  </Step>
+
+  <Step title="Change status to Released" icon="edit" title-type="p">
+    Click **Edit**, set **Status** to **Released**, and enter the **Exit date** for the release.
+
+    If a release map is available, pick the release point:
+
+    - Use the **map picker** to select the GPS location, or
+
+    - Use the **current location** option where appropriate.
+  </Step>
+
+  <Step title="Save and confirm location" icon="check-circle" title-type="p">
+    Save your changes. The status badge changes to **Released** and the release GPS location is stored with the record. Depending on configuration, released animals may no longer appear in the default In Care filter.
+  </Step>
+</Steps>
+
+<Callout kind="tip" collapsed="false">
+  Use accurate GPS locations for release so you can later analyse release outcomes or respond to regulators requesting release site information.
+</Callout>
+
+### Deceased
+
+Use **Deceased** when the animal dies in care or is euthanised on welfare grounds.
+
+- Update **Status** to **Deceased**.
+
+- Set an appropriate **Exit date**.
+
+- Add an observation or note explaining the circumstances if required for your records.
+
+### Transferred
+
+Use **Transferred** when the animal is moved to another carer, facility, or organisation.
+
+- Update **Status** to **Transferred**.
+
+- Set the **Exit date** to the transfer date.
+
+- Use **Notes** to record where the animal was transferred.
+
+<Callout kind="info" collapsed="false">
+  Once an animal is **Released**, **Deceased**, or **Transferred**, it may no longer show in default **In Care** filters. Use the status filter to find historical records when needed.
+</Callout>
+
+## Permissions and role behaviour
+
+WireCare enforces role‑based permissions throughout the Animals module:
+
+- **Volunteers**
+
+  - Can view the **Animals in Care** list and open details.
+
+  - Can usually add observations.
+
+  - Cannot edit core animal fields, change status, upload/delete images, or delete animals.
+
+- **Coordinators and Treasurers**
+
+  - Have full edit access to animal records for their branch.
+
+  - Can add, edit, and delete animals.
+
+  - Can upload and remove profile images.
+
+  - Can add, edit and delete observations.
+
+  - Can change statuses, including capturing release GPS locations.
+
+- **SuperAdmin**
+
+  - Is intentionally blocked from edits in this UI to avoid mixing operational data entry with system‑wide admin duties.
+
+  - Can still view Animals in Care, but cannot change records.
+
+<Callout kind="alert" collapsed="false">
+  If you expect to be able to edit animals but the buttons are disabled or missing, check which role your account has been assigned or contact your coordinator for an access review.
+</Callout>
+
+## Exporting observation history to PDF
+
+From the **Observations** section in an animal's details:
+
+- Use the **PDF export** option to generate a report of all observations for that animal.
+
+- The exported PDF includes entries ordered by date, including notes, weights, meds, and other recorded fields.
+
+Common uses:
+
+- Sharing with vets before or after a consult.
+
+- Providing documentation for audits or regulatory reporting.
+
+- Sending a case history to another organisation when transferring an animal.
+
+---
+
+Once you are comfortable with **Animals in Care**, consider setting up consistent **Future Intakes** workflows and observation routines so your team records the same key details every time.
