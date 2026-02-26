@@ -41,20 +41,20 @@
                     "title": "Animals",
                     "path": "animals",
                     "icon": "lucide-paw-print"
+                  },
+                  {
+                    "group": "Supplementary Concepts",
+                    "pages": [
+                      {
+                        "title": "Future Intakes",
+                        "path": "future-intakes",
+                        "icon": "lucide-paw-print"
+                      }
+                    ],
+                    "icon": "transgender-icon"
                   }
                 ],
                 "icon": "lucide-paw-print"
-              },
-              {
-                "group": "Supplementary Concepts",
-                "pages": [
-                  {
-                    "title": "Future Intakes",
-                    "path": "future-intakes",
-                    "icon": "lucide-paw-print"
-                  }
-                ],
-                "icon": "transgender-icon"
               },
               {
                 "title": "Features",
