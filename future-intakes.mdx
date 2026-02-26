@@ -1,0 +1,616 @@
+---
+title: Future Intakes
+description: Plan upcoming animal admissions with the Future Intakes waitlist, including statuses, priorities, permissions, and workflows to add, update, assign, and complete entries.
+---
+
+## What Future Intakes is for
+
+Future Intakes manages planned animal admissions before they move into **Animals in Care**. Think of it as a **waitlist** for animals that are expected but not yet admitted.
+
+Use Future Intakes when:
+
+- A rescuer or member of the public has called and you know an animal is coming in soon.
+- A carer at another branch or organisation plans to transfer an animal to you.
+- You want to track animals currently held elsewhere and schedule them into cages and carers.
+
+Once an animal is actually admitted, you convert the Future Intake entry to an **Animal in Care** record.
+
+<Callout kind="info">
+
+Future Intakes keeps your **upcoming workload** visible without cluttering your main [Animals](/animals) list, which only shows animals already in care.
+
+</Callout>
+
+### How Future Intakes differs from Animals in Care
+
+- **Future Intakes** tracks: planned admissions, current holding location elsewhere, proposed intake date, and proposed cage.
+- **Animals in Care** tracks: animals currently in your branch care, including medical notes, feeds, and outcomes.
+
+You move an animal from planning to active care by **completing** a Future Intake, which creates the new animal record.
+
+## Accessing Future Intakes
+
+You can open Future Intakes either from the Animals page or directly via its routes.
+
+<Steps>
+  <Step title="Open from Animals page" icon="arrow-right" title-type="p">
+
+  - Go to the **Animals in Care** page: `[Animals](/animals)`.
+  - At the top of the page header, select **Future Intakes**.
+  - WireCare opens the Future Intakes list at the route `"/future-intakes"`.
+
+  </Step>
+
+  <Step title="Use direct URLs" icon="terminal" title-type="p">
+
+  - **List view:** open `"/future-intakes"` in your browser.
+  - **Add entry form:** open `"/future-intakes/add"` to go straight to the add form.
+
+  </Step>
+
+  <Step title="Return to Animals in Care" icon="home" title-type="p">
+
+  - At the top of the Future Intakes page, select **Current Animals**.
+  - WireCare takes you back to the [Animals](/animals) page at `"/animals"`.
+
+  </Step>
+</Steps>
+
+## Roles and permissions
+
+Permissions for Future Intakes follow your role and branch.
+
+<Callout kind="info">
+
+All Future Intakes entries are **branch‑scoped**. You only see and modify entries linked to your current branch.
+
+</Callout>
+
+### Who can do what
+
+- **View list and details**
+  - Volunteers
+  - Coordinators
+- **Add new Future Intake**
+  - Volunteers
+  - Coordinators
+  - **Not** SuperAdmin
+- **Edit or delete an entry**
+  - Coordinators only
+  - **Not** volunteers
+  - **Not** SuperAdmin
+- **Assign an entry to a user**
+  - Coordinators only
+
+SuperAdmin accounts are intentionally blocked from add/edit/delete/assign actions in Future Intakes, the same way they are blocked from most day‑to‑day record changes.
+
+## Screens and workflows overview
+
+Use these tabs to jump to the part of the feature you need.
+
+<Tabs>
+  <Tab title="List view" icon="list">
+
+  The **Future Intakes list** shows all upcoming admissions for your branch in a searchable, filterable table (desktop) or card layout (mobile), with actions to view, edit, delete and complete entries.
+
+  </Tab>
+  <Tab title="Add & edit entries" icon="edit">
+
+  The **Add** and **Edit** forms let you enter or update details such as species, proposed intake date, current holding location, priority, and contact details, including optional photo upload.
+
+  </Tab>
+  <Tab title="Complete & convert to animal" icon="check-circle">
+
+  The **Complete intake** action converts a Future Intake into a live **Animal in Care** record and marks the Future Intake as **Intake Complete**, linking them together.
+
+  </Tab>
+</Tabs>
+
+The rest of this page goes through each area in more detail, then walks through common workflows step by step.
+
+## List view: searching, filtering and actions
+
+The Future Intakes list is available at `"/future-intakes"`. On desktop it uses a table; on smaller screens each entry appears as a card.
+
+Each row/card shows:
+
+- Photo (if uploaded)
+- Animal name and species
+- Contact name
+- Proposed intake date (Australian format, for example `15 Jan 2026`)
+- Proposed cage
+- Current holding location
+- Priority badge
+- Status badge
+- Date added to the waitlist
+
+### Search and filters
+
+You can combine search and filters to narrow the list. The app shows **Showing X of Y** to make it clear how many entries are currently visible.
+
+<ParamField path="search" type="string">
+
+Searches across animal name, species, contact name, contact phone, contact email, holding location, proposed cage ID, and callsheet ID.
+
+</ParamField>
+
+<ParamField path="filters.status" type="enum">
+
+Status filter dropdown with options: **All**, **Pending**, **Ready for Intake**, **Intake Complete**, **Cancelled**.
+
+</ParamField>
+
+<ParamField path="filters.priority" type="enum">
+
+Priority filter dropdown with options: **All**, **High**, **Medium**, **Low**.
+
+</ParamField>
+
+### Sorting behaviour
+
+Future Intakes are sorted for triage:
+
+1. **By status** in this order:
+   - Pending
+   - Ready for Intake
+   - Intake Complete
+   - Cancelled
+2. Inside each status group, by **earliest proposed intake date** first.
+
+This keeps urgent upcoming admissions at the top, while completed and cancelled entries drop down the list.
+
+### Row actions
+
+Each Future Intake item supports different actions depending on your role.
+
+- **View** — open the Future Intake details, including full notes and contact information.
+- **Edit** — update fields such as status, priority, assignment and planning details (coordinators only).
+- **Delete** — permanently remove a Future Intake entry after confirmation (coordinators only).
+- **Complete intake** — start the process that creates a linked animal record when successful.
+
+<Callout kind="alert">
+
+If you cannot see **Edit**, **Delete** or **Complete** actions, your account is most likely a **Volunteer** or **SuperAdmin**, or the entry belongs to another branch.
+
+</Callout>
+
+## Future Intake fields
+
+This section describes the key fields you work with in Future Intakes. Field names may appear as labels or placeholders in the UI.
+
+### Core animal details
+
+<ParamField path="photo" type="file">
+
+Optional image upload stored in the `animal-images` storage bucket. Shows on the list and detail views. You can upload or replace this image.
+
+</ParamField>
+
+<ParamField path="species" type="select" required="true">
+
+Species, selected from your configured species table (for example, Possum, Magpie, Flying Fox).
+
+</ParamField>
+
+<ParamField path="name" type="string" required="true">
+
+Name or identifier for the animal. Use something that carers will recognise on the roster.
+
+</ParamField>
+
+<ParamField path="age" type="enum">
+
+Age class: **Baby**, **Juvenile** or **Adult**.
+
+</ParamField>
+
+<ParamField path="gender" type="enum">
+
+Gender: **Male**, **Female** or **Unknown**.
+
+</ParamField>
+
+<ParamField path="weight" type="number">
+
+Estimated weight of the animal. Use units consistent with your branch practice (for example, grams).
+
+</ParamField>
+
+### Intake planning fields
+
+<ParamField path="proposedIntakeDate" type="date">
+
+Planned date for the animal to be admitted, shown in Australian date format (for example, `15 Jan 2026`).
+
+</ParamField>
+
+<ParamField path="currentHoldingLocation" type="string">
+
+Where the animal is currently located (for example, "Caller address in Newcastle", "Vet hospital", "Other branch").
+
+</ParamField>
+
+<ParamField path="proposedCageId" type="select">
+
+Planned cage for the animal, selected from the cages table. Helps coordinators plan space before intake.
+
+</ParamField>
+
+<ParamField path="priority" type="enum">
+
+Triage priority for this intake. Defaults to **Medium**. See [Priorities](#priorities) below.
+
+</ParamField>
+
+<ParamField path="status" type="enum">
+
+Current status of the Future Intake. Defaults to **Pending**. See [Statuses](#statuses) below.
+
+</ParamField>
+
+### Contact and linkage fields
+
+<ParamField path="contactName" type="string" required="true">
+
+Name of the person or organisation currently responsible for the animal or making the booking.
+
+</ParamField>
+
+<ParamField path="contactPhone" type="string">
+
+Best phone number to reach the contact about this animal.
+
+</ParamField>
+
+<ParamField path="contactEmail" type="string">
+
+Email address for follow‑up communication, if available.
+
+</ParamField>
+
+<ParamField path="callsheetId" type="string">
+
+ID linking back to the originating call or incident. Future Intake completion checks for duplicate `callsheet_id` before creating a new animal.
+
+</ParamField>
+
+<ParamField path="assignedToUserId" type="select">
+
+Assigned coordinator or carer for this Future Intake. Editable only by coordinators.
+
+</ParamField>
+
+### Health and notes fields
+
+<ParamField path="condition" type="string">
+
+Short description of the animal's condition at the time of planning (for example, "Wing fracture, stabilised at vet").
+
+</ParamField>
+
+<ParamField path="notes" type="string">
+
+Free‑text notes for any additional context coordinators and carers need to know before intake.
+
+</ParamField>
+
+## Statuses and how to use them {#statuses}
+
+Future Intakes supports four statuses. Use them consistently so coordinators and volunteers share the same mental model.
+
+<ParamField path="status.Pending" type="status">
+
+Default status when you first create a Future Intake. Use for animals that are expected but not yet ready for immediate intake, or where details are still being confirmed.
+
+</ParamField>
+
+<ParamField path="status.ReadyForIntake" type="status">
+
+Use when the animal can be admitted as soon as you have a cage and carer available. These should be prioritised for allocation.
+
+</ParamField>
+
+<ParamField path="status.IntakeComplete" type="status">
+
+Set automatically when you successfully complete the intake to create the animal record. The Future Intake remains as a historical record but is clearly marked as completed.
+
+</ParamField>
+
+<ParamField path="status.Cancelled" type="status">
+
+Use when an intake will no longer go ahead (for example, animal released elsewhere, deceased, or caller withdraws). Cancelled entries are kept for audit but sort to the bottom.
+
+</ParamField>
+
+<Callout kind="tip">
+
+Keep status up to date as plans change. This keeps the list accurate and helps coordinators avoid double‑booking cages or carers.
+
+</Callout>
+
+## Priorities and how to use them {#priorities}
+
+Priorities help you triage upcoming admissions, especially when your cages or carers are limited.
+
+<ParamField path="priority.High" type="priority">
+
+Use for urgent or high‑risk cases that should be allocated as soon as possible (for example, serious injuries, dependent joeys with no alternative placement).
+
+</ParamField>
+
+<ParamField path="priority.Medium" type="priority">
+
+Default priority for most intakes. Use when the animal needs care but timing is flexible within a reasonable window.
+
+</ParamField>
+
+<ParamField path="priority.Low" type="priority">
+
+Use for less urgent or more flexible cases (for example, planned transfers well in advance, or animals currently safe and stable at another facility).
+
+</ParamField>
+
+You can filter the list by priority, and coordinators can adjust priority at any time based on new information.
+
+## Common workflows
+
+This section walks through the main tasks you will perform with Future Intakes.
+
+### Add a new Future Intake entry
+
+<Steps>
+  <Step title="Open the add form" icon="plus" title-type="p">
+
+  - From [Animals](/animals), select **Future Intakes**, then select **Add Future Intake**.
+  - Or go directly to `"/future-intakes/add"`.
+
+  </Step>
+
+  <Step title="Fill in animal and planning details" icon="edit" title-type="p">
+
+  - Select the **Species** and add a clear **Name** or identifier.
+  - Set the **Proposed intake date** using an Australian‑style date (for example, `15 Jan 2026`).
+  - Enter **Current holding location**, **Priority** (defaults to Medium) and leave **Status** as **Pending** unless it is already ready to come in.
+  - Add **Contact name**, **phone**, **email**, and **Callsheet ID** to link back to the call.
+
+  </Step>
+
+  <Step title="Add optional photo and notes" icon="upload" title-type="p">
+
+  - Upload a **Photo** if you have one.
+  - Record **Age**, **Gender**, **Weight**, **Condition** and any useful **Notes**.
+
+  </Step>
+
+  <Step title="Assign and save" icon="check-circle" title-type="p">
+
+  - If you are a coordinator, choose an **Assigned to** user and a **Proposed cage**.
+  - Select **Save** to create the Future Intake entry.
+  - The new entry appears in the list with status **Pending** and your selected priority.
+
+  </Step>
+</Steps>
+
+### Update status or priority
+
+<Steps>
+  <Step title="Open the entry to edit" icon="edit" title-type="p">
+
+  - From the list, select **Edit** on the relevant Future Intake.
+  - If you only see **View**, you do not have coordinator permissions.
+
+  </Step>
+
+  <Step title="Adjust status and priority" icon="settings" title-type="p">
+
+  - Change **Status** between **Pending**, **Ready for Intake**, **Intake Complete** or **Cancelled** as appropriate.
+  - Update **Priority** to **High**, **Medium** or **Low** based on urgency.
+
+  </Step>
+
+  <Step title="Save changes" icon="check-circle" title-type="p">
+
+  - Select **Save**.
+  - The list updates immediately; sorting will move the entry based on its new status and date.
+
+  </Step>
+</Steps>
+
+### Assign an intake to a user (coordinators only)
+
+<Steps>
+  <Step title="Edit the Future Intake" icon="users" title-type="p">
+
+  - Select **Edit** on the entry you want to allocate.
+  - Confirm you are logged in as a coordinator.
+
+  </Step>
+
+  <Step title="Set Assigned to user" icon="arrow-right" title-type="p">
+
+  - In the **Assigned to** field, choose the user who will coordinate or care for the animal.
+  - Optionally, adjust **Priority** or **Proposed cage** based on their availability.
+
+  </Step>
+
+  <Step title="Save and confirm" icon="check" title-type="p">
+
+  - Select **Save**.
+  - The assigned user now appears on the list, making it clear who owns the intake.
+
+  </Step>
+</Steps>
+
+### Upload or replace a photo
+
+<Steps>
+  <Step title="Open the entry" icon="image" title-type="p">
+
+  - From the Future Intakes list, select **Edit** on the relevant entry.
+
+  </Step>
+
+  <Step title="Upload or change the photo" icon="upload" title-type="p">
+
+  - In the **Photo** field, choose an image file from your device.
+  - To replace an existing photo, upload a new one; the old image reference is updated in the `animal-images` storage bucket.
+
+  </Step>
+
+  <Step title="Save and verify" icon="check-circle" title-type="p">
+
+  - Select **Save**.
+  - Back in the list, check that the new photo displays on the row or card.
+
+  </Step>
+</Steps>
+
+### Complete an intake and create the animal record
+
+Completing an intake converts the Future Intake into an **Animal in Care** entry and marks the intake as **Intake Complete**.
+
+<Steps>
+  <Step title="Check for duplicates via callsheet" icon="info" title-type="p">
+
+  - Before completing, confirm that the **Callsheet ID** is present and correct.
+  - WireCare uses `callsheet_id` to avoid creating duplicate animal records from the same incident.
+
+  </Step>
+
+  <Step title="Start completion" icon="play-circle" title-type="p">
+
+  - In the Future Intakes list, choose the entry.
+  - Use the **Complete** or **Complete Intake** action (depending on your UI wording).
+
+  </Step>
+
+  <Step title="Confirm and create animal" icon="check-circle" title-type="p">
+
+  - The backend checks whether an animal already exists with the same `callsheet_id`.
+  - If no duplicate is found, WireCare creates a new **Animals** record, links it back to the Future Intake, and sets the Future Intake status to **Intake Complete** with a completion timestamp.
+
+  </Step>
+
+  <Step title="Find the new animal in care" icon="home" title-type="p">
+
+  - Go to [Animals](/animals) to see the new animal listed with your branch's current animals.
+  - Use the **Callsheet ID** or name to search for it if needed.
+
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+
+If the completion process finds an existing animal with the same `callsheet_id`, the system blocks creating a duplicate and returns an error instead of completing the intake.
+
+</Callout>
+
+### Cancel a Future Intake
+
+Use cancellation when an expected intake will no longer proceed.
+
+<Steps>
+  <Step title="Open the entry to edit" icon="edit" title-type="p">
+
+  - In the list, select **Edit** for the relevant entry.
+
+  </Step>
+
+  <Step title="Change status to Cancelled" icon="x-circle" title-type="p">
+
+  - Set **Status** to **Cancelled**.
+  - Add a brief note explaining why the intake was cancelled.
+
+  </Step>
+
+  <Step title="Save" icon="check-circle" title-type="p">
+
+  - Select **Save**.
+  - The entry moves towards the bottom of the list due to its status and can still be referenced later.
+
+  </Step>
+</Steps>
+
+## Troubleshooting Future Intakes
+
+Most problems with Future Intakes fall into three categories: permissions, branch scope, or duplicate callsheet IDs.
+
+### I cannot add, edit or delete Future Intakes
+
+<Callout kind="alert">
+
+If actions you expect are missing, do not try to work around it by sharing logins. Ask a coordinator or admin for the correct role and branch.
+
+</Callout>
+
+<Steps>
+  <Step title="Check your role" icon="help-circle" title-type="p">
+
+  - If you are a **Volunteer**, you can **view** and **add** Future Intakes but not **edit**, **delete** or **assign** them.
+  - If you are a **SuperAdmin**, you are **blocked** from add/edit/delete/assign actions for Future Intakes.
+  - Only **Coordinators** can edit, delete and assign Future Intakes.
+
+  </Step>
+
+  <Step title="Confirm you are on the right screen" icon="monitor" title-type="p">
+
+  - Make sure you are on `"/future-intakes"` and not on [Animals](/animals).
+  - Actions differ between active animals and future intakes.
+
+  </Step>
+</Steps>
+
+### I cannot see a Future Intake I expect to see
+
+<Steps>
+  <Step title="Check your branch" icon="info" title-type="p">
+
+  - Future Intakes are **branch‑scoped** via `branch_id`.
+  - If the entry belongs to another branch, you will not see it in your list.
+
+  </Step>
+
+  <Step title="Clear filters and search" icon="minus" title-type="p">
+
+  - Remove any **Status** or **Priority** filters.
+  - Clear the search box to show all entries, then reapply filters as needed.
+
+  </Step>
+</Steps>
+
+If you still cannot find the entry, confirm with another coordinator which branch it was created under.
+
+### I see an error when completing an intake
+
+Two common causes are:
+
+- A duplicate animal already exists for the same callsheet.
+- Your account or branch does not have permission to create the animal record.
+
+<Steps>
+  <Step title="Check callsheet ID for duplicates" icon="search" title-type="p">
+
+  - Note the **Callsheet ID** from the Future Intake.
+  - Go to [Animals](/animals) and search for that callsheet ID.
+  - If you find an existing animal with the same ID, the system correctly blocked a duplicate.
+
+  </Step>
+
+  <Step title="Confirm your role and branch" icon="shield" title-type="p">
+
+  - Ensure you are a **Coordinator** in the correct branch.
+  - If Supabase row‑level security denies access when creating the animal, you may see an error instead of a successful completion.
+
+  </Step>
+
+  <Step title="Retry or escalate" icon="arrow-right" title-type="p">
+
+  - If the callsheet is not duplicated and your role is correct, try the **Complete intake** action again.
+  - If errors continue, capture the exact error message and pass it to your technical support contact so they can check branch policies and RLS rules.
+
+  </Step>
+</Steps>
+
+---
+
+Keeping Future Intakes accurate and up to date gives coordinators a clear picture of upcoming workload and helps carers prepare cages and resources before animals arrive. Use statuses, priorities and assignments consistently so the whole team trusts the waitlist.
