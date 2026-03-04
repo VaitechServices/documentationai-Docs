@@ -1,13 +1,15 @@
 ---
 title: Animals
-description: Manage live wildlife cases via the Animals in Care page, including search, filters, observations, statuses, images, and role-based permissions.
+description: >-
+  Manage live wildlife cases via the Animals in Care page, including search,
+  filters, observations, statuses, images, and role-based permissions.
 ---
 ## Overview
 
 Use the **Animals in Care** page to manage every animal currently recorded in WireCare. From here you can search, filter, open full details, record observations, update status, and add new animals.
 
 <Callout kind="info" collapsed="false">
-  Access to edit and delete actions depends on your role. Volunteers are mostly view-only, Coordinators and Treasurers can update records, and SuperAdmin accounts are blocked from making changes.
+  Access to edit and delete actions depends on your role. Volunteers are mostly view-only, Coordinators and Treasurers can update records.
 </Callout>
 
 ## Navigating to Animals and related pages
@@ -21,20 +23,6 @@ You access the Animals module from the main navigation:
 - **Future Intakes** link → `/future-intakes` (for animals that are expected but not yet admitted)
 
 Use **Future Intakes** when you want to register an upcoming animal before it arrives. When the animal is actually admitted, move to **Animals in Care** and add or update the full record.
-
-<Columns cols={3}>
-  <Card title="Quickstart" href="/quickstart" icon="rocket" cta="Set up WireCare" horizontal="false">
-    Get WireCare ready for use, including branches and basic configuration, before you start adding animals.
-  </Card>
-
-  <Card title="Future Intakes" href="/future-intakes" icon="calendar" cta="Plan upcoming animals" horizontal="false">
-    Record animals that are expected to come into care soon, then convert them into full Animals records when they arrive.
-  </Card>
-
-  <Card title="Features overview" href="/features" icon="book-open" cta="Explore modules" horizontal="false">
-    See how Animals in Care fits with other modules such as calls, finances, and reporting.
-  </Card>
-</Columns>
 
 ## Key areas of the Animals module
 
@@ -58,7 +46,15 @@ The Animals workflow has three main areas:
 
 The **Animals in Care** page lists animals for your current branch. On larger screens, animals appear in a table with sortable columns; on smaller screens they appear as cards.
 
-### Information shown for each animal
+<Callout kind="tip" collapsed="false">
+  If your organisation has multiple branches, the list only shows animals for the branch you are currently assigned to.&#x20;
+
+
+
+  An Administrator will be required to transfer you to a different branch to see a different set of animals.
+</Callout>
+
+### Information shown for each animal on the Animal List page
 
 Each row or card includes:
 
@@ -76,7 +72,7 @@ Each row or card includes:
 
 - Intake date
 
-- Age band
+- Age band (Baby, Juvenile, Adult)
 
 - Gender
 
@@ -90,23 +86,19 @@ Statuses use the following labels:
 
 - **Transferred**
 
-Age bands appear as **Baby**, **Juvenile**, or **Adult**, using Australian date formatting for dates (for example, `15 Jan 2026`).
-
-<Callout kind="tip" collapsed="false">
-  If you manage multiple branches, the list only shows animals for the branch you are currently viewing. Switch branches from the main app controls to see a different set of animals.
-</Callout>
-
 ### Searching animals
 
-Use the search box above the list to quickly narrow down animals. The placeholder explains what you can search for:
+Use the search box above the list to quickly narrow down animals. You can search for animals by typing their:
 
-> `Search animals by name, species, condition, callsheet ID, enclosure ID, age, or gender...`
+> `name, species, condition, callsheet ID, enclosure ID, age, or gender.`
 
 Type any part of a name, ID, or descriptor and the list updates to show matching animals.
 
 ### Filtering by status
 
-Next to the search box is a status dropdown with options:
+Next to the search box is a status dropdown with options. This defaults to In Care, so users automatically see the most relevant animals.
+
+<Image src="https://blob-cdn.documentation.ai/org-c0de5504-28bd-45b7-928f-e35cbb50c729/doc-056fd1e2-786e-4f8d-897c-a0c532670875/1772614213768-lvrt88zp6a-animal-status-dropdown.png?q=85&fm=auto&auto=compress%2Cformat" width="206" height="184" alt="" />
 
 - **All**
 
@@ -156,55 +148,55 @@ The details modal typically includes:
 
 These are the main fields that make up an animal record.
 
-<ParamField path="name" type="string" required="false">
-  Animal's display name used throughout the app. Leave blank if you prefer to identify by callsheet ID only.
+<ParamField body="name" param-type="string" required="true" deprecated="false">
+  Animal's display name used throughout the app - should be aligned with the name in your organisations official records.
 </ParamField>
 
-<ParamField path="species" type="string" required="false">
+<ParamField path="species" param-type="string" required="false" deprecated="false">
   Species, usually selected from an autocomplete list so common species are consistent across the system.
 </ParamField>
 
-<ParamField path="age" type="string" required="false">
+<ParamField path="age" param-type="string" required="false" deprecated="false">
   Age band for the animal: Baby, Juvenile, or Adult. Used for reporting and triage.
 </ParamField>
 
-<ParamField path="weight" type="number" required="false">
+<ParamField path="weight" param-type="string" required="false" deprecated="false">
   Latest known weight at intake (in grams or kilograms, depending on your local practice). You can track ongoing weights via Observations.
 </ParamField>
 
-<ParamField path="gender" type="string" required="true">
+<ParamField path="gender" param-type="string" required="true" deprecated="false">
   Gender of the animal: Male, Female, or Unknown. This field is required when creating or editing a record.
 </ParamField>
 
-<ParamField path="condition" type="string" required="false">
+<ParamField path="condition" param-type="string" required="false" deprecated="false">
   Brief description of the presenting condition or reason for care (for example, wing fracture, orphaned joey).
 </ParamField>
 
-<ParamField path="status" type="string" required="false">
+<ParamField path="status" param-type="string" required="false" deprecated="false">
   Current status of the animal: In Care, Released, Deceased, or Transferred. Status controls which actions are available and how the case appears in reporting.
 </ParamField>
 
-<ParamField path="intakeDate" type="date" required="false">
+<ParamField path="intakeDate" param-type="string" required="false" deprecated="false">
   Date the animal was admitted into care. Displayed in Australian date format.
 </ParamField>
 
-<ParamField path="callsheetId" type="string" required="true">
+<ParamField path="callsheetId" param-type="string" required="true" deprecated="false">
   Link back to the originating call or incident. Required so you can trace the animal to the original callsheet.
 </ParamField>
 
-<ParamField path="exitDate" type="date" required="false">
+<ParamField path="exitDate" param-type="string" required="false" deprecated="false">
   Date the animal left care. Required when changing status away from In Care (released, deceased, or transferred).
 </ParamField>
 
-<ParamField path="enclosure" type="string" required="false">
+<ParamField path="enclosure" param-type="string" required="false" deprecated="false">
   Enclosure or cage ID where the animal is housed. Helps volunteers find the right animal during feeding rounds.
 </ParamField>
 
-<ParamField path="notes" type="string" required="false">
+<ParamField path="notes" param-type="string" required="false" deprecated="false">
   Any additional notes that do not fit other fields, such as special handling instructions or vet recommendations.
 </ParamField>
 
-<ParamField path="image" type="file" required="false">
+<ParamField path="image" param-type="string" required="false" deprecated="false">
   Profile image for the animal. Coordinators and Treasurers can upload or replace the image; they can also remove it if needed.
 </ParamField>
 
@@ -218,31 +210,31 @@ Observations track the day‑to‑day care an animal receives. You access them f
 
 Each observation includes:
 
-<ParamField path="dateTime" type="datetime" required="false">
+<ParamField path="dateTime" param-type="string" required="false" deprecated="false">
   Date and time of the observation. Used to order entries and track progress over time.
 </ParamField>
 
-<ParamField path="notes" type="string" required="true">
+<ParamField path="notes" param-type="string" required="true" deprecated="false">
   Free‑text notes describing what you observed or did during this check. This is the only required field for an observation.
 </ParamField>
 
-<ParamField path="weight" type="number" required="false">
+<ParamField path="weight" param-type="string" required="false" deprecated="false">
   Weight recorded at the time of the observation. Use this to monitor growth or decline between checks.
 </ParamField>
 
-<ParamField path="food" type="string" required="false">
+<ParamField path="food" param-type="string" required="false" deprecated="false">
   What the animal was fed, and how much. Useful for diet tracking and troubleshooting.
 </ParamField>
 
-<ParamField path="meds" type="string" required="false">
+<ParamField path="meds" param-type="string" required="false" deprecated="false">
   Medication given, including dosage and route if relevant.
 </ParamField>
 
-<ParamField path="behaviour" type="string" required="false">
+<ParamField path="behaviour" param-type="string" required="false" deprecated="false">
   Notes on behaviour, such as alertness, mobility, or stress indicators.
 </ParamField>
 
-<ParamField path="urine" type="string" required="false">
+<ParamField path="urine" param-type="string" required="false" deprecated="false">
   Details about urine output or quality, where this is being tracked.
 </ParamField>
 
@@ -272,23 +264,23 @@ Use the **Add Animal** button from the Animals in Care page to create a new reco
   <Step title="Enter core details" icon="edit" title-type="p">
     Fill in the key identifying details:
 
-    <ParamField path="name" type="string" required="false">
+    <ParamField path="name" param-type="string" required="false" deprecated="false">
       Animal name, if you assign one at intake.
     </ParamField>
 
-    <ParamField path="species" type="string" required="false">
+    <ParamField path="species" param-type="string" required="false" deprecated="false">
       Species, using the autocomplete list where possible.
     </ParamField>
 
-    <ParamField path="gender" type="string" required="true">
+    <ParamField path="gender" param-type="string" required="true" deprecated="false">
       Gender (Male, Female, or Unknown). This is required.
     </ParamField>
 
-    <ParamField path="age" type="string" required="false">
+    <ParamField path="age" param-type="string" required="false" deprecated="false">
       Age band (Baby, Juvenile, Adult).
     </ParamField>
 
-    <ParamField path="condition" type="string" required="false">
+    <ParamField path="condition" param-type="string" required="false" deprecated="false">
       Presenting condition or reason for admission.
     </ParamField>
   </Step>
@@ -296,11 +288,11 @@ Use the **Add Animal** button from the Animals in Care page to create a new reco
   <Step title="Link to the callsheet and dates" icon="calendar" title-type="p">
     Record how this animal entered care:
 
-    <ParamField path="callsheetId" type="string" required="true">
+    <ParamField path="callsheetId" param-type="string" required="true" deprecated="false">
       Required link to the original callsheet for this animal.
     </ParamField>
 
-    <ParamField path="intakeDate" type="date" required="false">
+    <ParamField path="intakeDate" param-type="string" required="false" deprecated="false">
       Admission date. Use the date the animal physically entered care.
     </ParamField>
   </Step>
@@ -308,15 +300,15 @@ Use the **Add Animal** button from the Animals in Care page to create a new reco
   <Step title="Set status, enclosure and notes" icon="settings" title-type="p">
     Finish setting up the case:
 
-    <ParamField path="status" type="string" required="false">
+    <ParamField path="status" param-type="string" required="false" deprecated="false">
       Leave as In Care when first admitting an animal.
     </ParamField>
 
-    <ParamField path="enclosure" type="string" required="false">
+    <ParamField path="enclosure" param-type="string" required="false" deprecated="false">
       Enclosure or cage ID where the animal will be housed.
     </ParamField>
 
-    <ParamField path="notes" type="string" required="false">
+    <ParamField path="notes" param-type="string" required="false" deprecated="false">
       Any extra instructions, such as isolation needs or handling restrictions.
     </ParamField>
   </Step>
@@ -350,31 +342,31 @@ Recording regular observations keeps the animal's history accurate and makes han
   <Step title="Add a new observation" icon="plus" title-type="p">
     Click **Add Observation**. A form appears with fields for:
 
-    <ParamField path="notes" type="string" required="true">
+    <ParamField path="notes" param-type="string" required="true" deprecated="false">
       Required notes describing what you observed or did.
     </ParamField>
 
-    <ParamField path="dateTime" type="datetime" required="false">
+    <ParamField path="dateTime" param-type="string" required="false" deprecated="false">
       Observation date/time (often defaults to now).
     </ParamField>
 
-    <ParamField path="weight" type="number" required="false">
+    <ParamField path="weight" param-type="string" required="false" deprecated="false">
       Current weight.
     </ParamField>
 
-    <ParamField path="food" type="string" required="false">
+    <ParamField path="food" param-type="string" required="false" deprecated="false">
       Food given, if any.
     </ParamField>
 
-    <ParamField path="meds" type="string" required="false">
+    <ParamField path="meds" param-type="string" required="false" deprecated="false">
       Medication details, if any.
     </ParamField>
 
-    <ParamField path="behaviour" type="string" required="false">
+    <ParamField path="behaviour" param-type="string" required="false" deprecated="false">
       Behaviour notes.
     </ParamField>
 
-    <ParamField path="urine" type="string" required="false">
+    <ParamField path="urine" param-type="string" required="false" deprecated="false">
       Urine notes, if you track this.
     </ParamField>
 
